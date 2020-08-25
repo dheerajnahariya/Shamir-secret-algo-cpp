@@ -1,0 +1,53 @@
+Choose Any Random Integer between 1 to 100
+41
+
+Extracting the 1 Byte
+2
+
+Generating 4 Shares for Each Byte
+67 2797
+34 1444
+0 50
+69 2879
+
+Choose Any Random Integer between 1 to 100
+24
+
+Extracting the 2 Byte
+4
+
+Generating 4 Shares for Each Byte
+78 1924
+58 1444
+62 1540
+64 1588
+
+Choose Any Random Integer between 1 to 100
+5
+
+Extracting the 3 Byte
+7
+
+Generating 4 Shares for Each Byte
+45 280
+81 460
+27 190
+61 360
+
+Now we will Apply Lagranges Polynomial for Decrypting
+Generating the Original Byte Array By 1st and 2nd Share
+
+Restoring 1 digit by 1st and 2nd Share
+34 0 1444 50
+Restored 1 Byte 2
+
+Restoring 2 digit by 1st and 2nd Share
+58 62 1444 1540
+Restored 2 Byte 4
+
+Restoring 3 digit by 1st and 2nd Share
+81 27 460 190
+Restored 3 Byte 7
+
+
+Original Byte Array Restored Completely By SSS Algorithm => 247

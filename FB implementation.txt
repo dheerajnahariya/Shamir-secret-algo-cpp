@@ -1,0 +1,379 @@
+#include<fstream>
+#include<iostream>
+#include<stdlib.h>
+#include<windows.h>
+#include<conio.h>
+#include<string>
+
+std::string user;
+std::string a;
+std::string p;
+std::string pass;
+
+using namespace std;
+
+ifstream fin;
+ofstream fout;
+
+
+
+int flag=0;
+
+
+
+struct frnd
+{
+    char name[100];
+    struct frnd *next;
+}*start=NULL;
+
+
+
+void addfrnd()
+{
+
+
+    struct frnd* temp=new frnd;
+    cout<<"Enter the name of the person to be added to your friend list: "<<endl;
+    cin>>temp->name;
+    temp->next=NULL;
+
+
+
+    if(start==NULL)
+    {
+        start=temp;
+    }
+
+
+
+   else
+    {
+        struct frnd* temp1=start;
+        while(temp1->next!=NULL)
+            {
+            temp1=temp1->next;
+            }
+
+        temp1->next=temp;
+    }
+    cout<<"\n\n";
+    cout<<temp->name<<" successfully added as friend!"<<endl;
+
+}
+
+
+
+void dispfrnd()
+{
+    struct frnd* temp=start;
+    int count1 = 1;
+    cout<<endl<<"Your friends: "<<endl;
+    while(temp!=NULL)
+    {
+        cout<<count1<<". ";
+        cout<<temp->name<<"\n\n";
+        temp=temp->next;
+        count1++;
+    }
+}
+
+
+
+void readfile(string str){
+getline(fin,str);
+cout<<"Messages with your friend are: "<<str<<endl;
+}
+
+
+
+struct person{
+         string  str;
+         struct person* next;
+    }per1,per2,per3,per4,per5,*p1,*p2,*p3,*p4,*p5;
+
+    struct person* head=NULL;
+
+void signup()
+{
+	cout<<"\nCreate your username and password\n"<<endl;
+ 	cout<<"New Username: "<<endl;
+ 	cin>>a;
+ 	cout<<"\nNew Password: "<<endl;
+ 	cin>>p;
+ 	system("cls");
+}
+
+
+
+void loading(){
+
+	cout<<"\nEnter your username and password to log in:\n";
+ 	cout<<"Username: "<<endl;
+ 	cin>>user;
+ 	cout<<"\nPassword: "<<endl;
+ 	cin>>pass;
+
+
+
+
+if(pass==p && user == a)
+ {
+    cout<< "\nLogged in successfully as "<<user<<endl;
+    p1=&per1;
+    p2=&per2;
+    p3=&per3;
+    p4=&per4;
+    p5=&per5;
+
+    p1->next=p2;
+    p2->next=p3;
+    p3->next=p4;
+    p4->next=p5;
+    p5->next=head;
+    head=p1;
+    flag=1;
+
+    cout<<"Press enter to proceed!";
+    cin.ignore();
+    getchar();
+  system("cls");
+}
+
+    else{
+
+        flag=0;
+        }
+
+}
+
+void inbox(){
+
+    int choice;
+    //Person 1.\nPerson 2.\nPerson 3.\nPerson 4.\nPerson 5.\nENTER YOUR CHOICE:"
+	cout<<"Whose message do you wish to read?\n"<<endl;
+	dispfrnd();
+    cin>>choice;
+    cout<<endl;
+
+    switch(choice){
+
+
+case 1:
+
+    fin.open("C:\\Users\\siddheshwar singh\\Desktop\\p1.txt");
+    readfile(p1->str);
+    fin.close();
+    break;
+
+case 2:
+
+    fin.open("C:\\Users\\siddheshwar singh\\Desktop\\p2.txt");
+    readfile(p2->str);
+    fin.close();
+    break;
+
+case 3:
+
+    fin.open("C:\\Users\\siddheshwar singh\\Desktop\\p3.txt");
+    readfile(p3->str);
+    fin.close();
+    break;
+
+case 4:
+
+    fin.open("C:\\Users\\siddheshwar singh\\Desktop\\p4.txt");
+    readfile(p4->str);
+    fin.close();
+    break;
+
+case 5:
+
+    fin.open("C:\\Users\\siddheshwar singh\\Desktop\\p5.txt");
+    readfile(p5->str);
+    fin.close();
+    break;
+    }
+
+}
+
+
+
+void outbox(){
+
+
+int choice;
+cout<<"Whom do you wish to write a new message?"<<endl;
+dispfrnd();
+cin>>choice;
+
+cin.ignore();
+switch(choice){
+
+case 1:
+    cout<<"Enter the message for your friend:"<<endl;
+    fout.open("C:\\Users\\siddheshwar singh\\Desktop\\p1.txt");
+    getline(cin,p1->str);
+    fout<<p1->str;
+    fout.close();
+
+
+    break;
+
+
+case 2:
+
+    cout<<"Enter the message for your friend:"<<endl;
+    fout.open("C:\\Users\\siddheshwar singh\\Desktop\\p2.txt");
+    getline(cin,p2->str);
+    fout<<p2->str;
+    fout.close();
+
+
+    break;
+
+case 3:
+
+    cout<<"Enter the message for your friend:"<<endl;
+    fout.open("C:\\Users\\siddheshwar singh\\Desktop\\p3.txt");
+    getline(cin,p3->str);
+    fout<<p3->str;
+    fout.close();
+
+
+    break;
+
+case 4:
+
+    cout<<"Enter the message for your friend:"<<endl;
+    fout.open("C:\\Users\\siddheshwar singh\\Desktop\\p4.txt");
+    getline(cin,p4->str);
+    fout<<p4->str;
+    fout.close();
+
+
+    break;
+
+case 5:
+
+    cout<<"Enter the message for your friend:"<<endl;
+    fout.open("C:\\Users\\siddheshwar singh\\Desktop\\p5.txt");
+    getline(cin,p5->str);
+    fout<<p5->str;
+    fout.close();
+
+
+    break;
+
+}
+
+
+}
+
+
+
+
+int main ()
+{
+
+    int n;
+    char name[100];
+	int option;
+	cout<<"\n\t\t\tWELCOME TO FACEBOOK";
+	cout<<"\n\n\t\t1.Login\t\t2.Sign Up\t3.Quit\n";
+	cout<<"\n\n\n\nCHOOSE AN OPTION:\n";
+	cin>>option;
+	cout<<"Thank You!!!! YOUR CHOICE IS WHAT MATTERS TO US\n";
+	cout<<"Press any key to proceed"<<endl;
+	cin.ignore();
+	getchar();
+	switch(option)
+	{
+		case 2:
+			signup();
+			break;
+
+		case 3:
+			cout<<"\n\n\n\n\n\n\n\t\t\tTHANK YOU";
+			exit(0);
+			break;
+
+		case 1:
+			cout<<"First Create a new account to proceed to Login";
+			signup();
+			break;
+	}
+
+    loading();
+
+
+if(flag==1){
+
+    while(1){
+
+    cout<<"\tHOMEPAGE"<<endl<<"1-INBOX\n2-OUTBOX\n3-ADD FRIEND\n4-DISPLAY FRIENDLIST\n5-LOGOUT\n";
+    cout<<"\n\nEnter your choice: "<<endl;
+    cin>>n;
+    cin.ignore();
+
+
+    switch(n){
+
+
+case 1:
+    cout<<endl<<"\tINBOX"<<endl;
+    inbox();
+    break;
+
+case 2:
+    cout<<endl<<"\tOUTBOX"<<endl;
+    outbox();
+    break;
+
+case 3:
+    cout<<endl<<"\tADD FRIENDS"<<endl;
+    addfrnd();
+    break;
+
+case 4:
+    cout<<endl<<"\tFRIENDLIST"<<endl;
+    dispfrnd();
+    break;
+
+case 5:
+    cout<<"You have been logged out!"<<endl;
+    return 0;
+
+
+}
+cout<<"\n\nPress any key to be redirected to the homepage."<<endl;
+
+cin.ignore();
+getchar();
+Sleep(500);
+cout<<"\n\nYou are being redirected, please wait.";
+
+for(int i=0;i<10;i++){
+
+Sleep(250);
+cout<<".";
+}
+
+system("cls");
+
+}
+
+
+}
+
+
+
+else{
+
+    cout<<"Unable to log in, incorrect username or password. Try restarting the program and log in again!";
+    }
+
+
+
+
+}
